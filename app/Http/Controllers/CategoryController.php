@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('categories.create');
     }
 
     /**
@@ -28,15 +28,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $credential = $request->validate([
-            'title' => 'required',
-            'discription' => 'required',
-            'productDate' => 'required',
-            'price' => 'required',
+        $request->validate([
+            'categoryName' => 'required|unique:categories,categoryName',
+            'categorySlug' => 'required|unique:categories,categorySlug',
         ]);
 
-        Product::create($credential);
-        return redirect()->route('index')->with('success', "You're Product Added");
+        $categorySlug = strtolower(str_replace(' ', '-', $request->categorySlug));
+
+        $credential = [
+            'categoryName' => $request->categoryName,
+            'categorySlug' => $categorySlug,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        Category::create($credential);
+        return redirect()->route('category.create')->with('success', 'Added');
     }
 
     /**
