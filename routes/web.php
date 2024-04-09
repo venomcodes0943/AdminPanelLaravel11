@@ -11,6 +11,11 @@ Route::group(['controller' => AuthController::class], function () {
     Route::get('/logout', 'logout')->name('logout');
 
 });
-Route::group(['middleware' => Authenticate::class, 'controller' => ProductController::class], function () {
-    Route::get('/', 'index')->name('index');
+Route::group(['middleware' => Authenticate::class], function () {
+    Route::get('/', function () {
+        return view('admin.index.index');
+    })->name('index');
+    Route::resource('product', ProductController::class);
+    // Route::get('product/create', [ProductController::class, 'create']);
 });
+

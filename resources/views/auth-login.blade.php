@@ -1,12 +1,5 @@
 <x-head />
 <x-scripts />
-<script>
-    Swal.fire({
-        title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success"
-    });
-</script>
 
 <body data-layout-mode="light" data-sidebar-size="default" data-theme-layout="vertical"
     class="bg-[#EEF0FC] dark:bg-gray-900">
