@@ -12,10 +12,7 @@ Route::group(['controller' => AuthController::class], function () {
 
 });
 Route::group(['middleware' => Authenticate::class], function () {
-    Route::get('/', function () {
-        return view('admin.index.index');
-    })->name('index');
+    Route::get('/', fn() => view('admin.index'))->name('index');
     Route::resource('product', ProductController::class);
-    // Route::get('product/create', [ProductController::class, 'create']);
 });
 
