@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $data = Category::all();
+        return view('products.create', ['categoryData' => $data]);
     }
 
     /**
@@ -28,15 +30,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $credential = $request->validate([
             'title' => 'required',
             'discription' => 'required',
+            'category_id' => 'required',
             'productDate' => 'required',
             'price' => 'required',
         ]);
 
+        $credential['category_id'] = $request->category_id;
+        $credential['gender'] = $request->gender;
+        $credential['size'] = $request->size;
+        $credential['vendor_id'] = 1;
         Product::create($credential);
-        return redirect()->route('index')->with('success', "You're Product Added");
+        return redirect()->route('product.create')->with('success', "You're Product Added");
     }
 
     /**

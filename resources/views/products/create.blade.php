@@ -70,33 +70,43 @@
                     </div><!--end col-->
                     <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-9">
                         <div class="w-full relative mb-4">
-                            <form action="#">
+                            <form action="{{ route('product.store') }}" method="POST">
+                                @csrf
                                 <div class="flex-auto p-0 md:p-4">
                                     <div class="mb-2">
                                         <label for="title"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Title</label>
-                                        <input type="title" id="title"
+                                        <input type="text" id="title" name="title"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700"
-                                            placeholder="Title" required>
+                                            placeholder="Title" value="{{ old('title') }}">
                                     </div>
+                                    @error('title')
+                                        <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                    @enderror
                                     <div class="mb-2">
                                         <label for="category"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Category</label>
-                                        <select id="category"
+                                        <select id="category" name="category_id" value="{{ old('category_id') }}"
                                             class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                            <option class="dark:text-slate-700">All Category</option>
-                                            <option class="dark:text-slate-700">Electronics</option>
-                                            <option class="dark:text-slate-700">Furniture</option>
-                                            <option class="dark:text-slate-700">Footwear</option>
-                                            <option class="dark:text-slate-700">Clothes</option>
+                                            <option class="dark:text-slate-700" selected>Categories</option>
+                                            @foreach ($categoryData as $data)
+                                                <option class="dark:text-slate-700" value="{{ $data->id }}">
+                                                    {{ $data->categoryName }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
+                                    @error('catedory_id')
+                                        <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                    @enderror
                                     <div class="mb-2">
                                         <label for="description"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Description</label>
-                                        <textarea id="description" rows="3"
+                                        <textarea id="description" rows="3" name="discription"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                                            placeholder="Description ..."></textarea>
+                                            placeholder="Description ..." value="{{ old('discription') }}"></textarea>
+                                        @error('discription')
+                                            <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="mb-2">
                                         <div class="grid grid-cols-2 gap-3">
@@ -104,16 +114,22 @@
                                                 <label for="Product-date"
                                                     class="font-medium text-sm text-slate-600 dark:text-slate-400">Product
                                                     Date</label>
-                                                <input type="text" id="Product-date"
+                                                <input type="date" id="Product-date"
                                                     class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                                                    name="foo">
+                                                    name="productDate" value="{{ old('date') }}">
+                                                @error('productDate')
+                                                    <div class="font-bold text-red-500">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-span-1">
                                                 <label for="price"
                                                     class="font-medium text-sm text-slate-600 dark:text-slate-400">Price</label>
-                                                <input type="title" id="price"
+                                                <input type="text" id="price" name="price"
                                                     class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700"
-                                                    placeholder="Price" required>
+                                                    placeholder="Price" value="{{ old('price') }}">
+                                                @error('price')
+                                                    <div class="font-bold text-red-500">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +137,7 @@
                                         <label for="gender"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">For this
                                             product</label>
-                                        <select id="gender"
+                                        <select id="gender" name="gender" value="{{ old('gender') }}"
                                             class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700">
                                             <option class="dark:text-slate-700">-- Gender --</option>
                                             <option class="dark:text-slate-700">Male</option>
@@ -130,10 +146,13 @@
                                             <option class="dark:text-slate-700">Other</option>
                                         </select>
                                     </div>
+                                    @error('gender')
+                                        <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                    @enderror
                                     <div class="mb-2">
                                         <label for="sizing"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Size</label>
-                                        <select id="sizing"
+                                        <select id="sizing" name="size" value="{{ old('size') }}"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700">
                                             <option>Size</option>
                                             <option>SM</option>
@@ -143,7 +162,9 @@
                                             <option>XXL</option>
                                         </select>
                                     </div>
-
+                                    @error('size')
+                                        <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                    @enderror
                                     <div class="">
                                         <button
                                             class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500">Add
@@ -158,6 +179,14 @@
                     </div><!--end col-->
                 </div> <!--end grid-->
                 <!-- footer -->
+                @if (session()->has('success'))
+                    <script>
+                        Swal.fire({
+                            title: "Category Successfully Added :)",
+                            icon: 'success'
+                        });
+                    </script>
+                @endif
                 <div
                     class="absolute bottom-0 -left-4 -right-4 block print:hidden border-t p-4 h-[52px] dark:border-slate-700/40">
                     <div class="container">
@@ -194,21 +223,11 @@
         <script>
             FilePond.registerPlugin(FilePondPluginImagePreview);
             // Get a reference to the file input element
-            const inputElement = document.querySelectorAll('input[type="file"]');
+            const inputElement = document.querySelectorAll('.filepond');
 
             // Create a FilePond instance
             inputElement.forEach(element => {
                 const pond = FilePond.create(element);
-            });
-
-
-            var elem = document.querySelector('input[name="foo"]');
-            new Datepicker(elem, {
-                // ...options
-            });
-            new Selectr('#sizing', {
-                taggable: true,
-                tagSeperators: [",", "|"]
             });
         </script>
     </x-slot>
