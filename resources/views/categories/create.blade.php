@@ -46,9 +46,9 @@
                     </div>
                 </div>
             </div><!--end container-->
-            <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
+            <div class="xl:w-full min-h-[calc(100vh-138px)] relative pb-14">
                 <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
-                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6">
+                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6 lg:col-start-2">
                         <div class="w-full relative mb-4">
                             <form action="{{ route('category.store') }}" method="POST">
                                 @csrf

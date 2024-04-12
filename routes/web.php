@@ -12,6 +12,7 @@ Route::group(['controller' => AuthController::class], function () {
     Route::get('/logout', 'logout')->name('logout');
 
 });
+
 Route::group(['middleware' => Authenticate::class], function () {
     Route::get('/', fn() => view('admin.index'))->name('index');
     Route::resource('product', ProductController::class);

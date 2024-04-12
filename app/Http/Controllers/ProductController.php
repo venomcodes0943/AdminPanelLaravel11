@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        $products = Product::all();
+        return view('products.show', ['products' => $products]);
     }
 
     /**
@@ -61,6 +62,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         //
+        echo $id;
     }
 
     /**
@@ -76,6 +78,10 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        // $product = Product::findOrFail($id);
+        // $product->delete();
+        // return redirect()->route('product.index')->with('deleted', true);
+        echo $id;
     }
 }

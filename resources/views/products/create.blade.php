@@ -182,7 +182,7 @@
                 @if (session()->has('success'))
                     <script>
                         Swal.fire({
-                            title: "Category Successfully Added :)",
+                            title: "Product Successfully Added :)",
                             icon: 'success'
                         });
                     </script>
