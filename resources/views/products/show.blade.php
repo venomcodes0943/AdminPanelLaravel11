@@ -47,23 +47,23 @@
                         <div class="w-full relative mb-4">
                             <div class="flex-auto p-0 md:p-4">
                                 <div class="flex flex-wrap gap-4 mb-3">
-                                    <div class="mb-2 w-44">
-                                        <select id="Category"
-                                            class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                            <option class="dark:text-slate-700">All Category</option>
-                                            <option class="dark:text-slate-700">Electronics</option>
-                                            <option class="dark:text-slate-700">Furniture</option>
-                                            <option class="dark:text-slate-700">Footwear</option>
-                                            <option class="dark:text-slate-700">Clothes</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-2 w-36">
-                                        <select id="Vendor"
-                                            class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                            <option class="dark:text-slate-700">Vendor</option>
-                                            <option class="dark:text-slate-700">Vendor-2</option>
-                                            <option class="dark:text-slate-700">Vendor-3</option>
-                                        </select>
+                                    <div class="mb-2 w-44" x-data="{ open: false }" @click.away ="open=false">
+                                        <div id="Category" @click="open = !open"
+                                            class="w-full flex items-center justify-between rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer">
+                                            <span>Categories</span>
+                                            <span>
+                                                <img src="{{ asset('/assets/images/down-arrow.png') }}" alt=""
+                                                    width="15px">
+                                            </span>
+                                        </div>
+                                        @foreach ($categories as $category)
+                                            <div x-show="open" style="display: none">
+                                                <a href="{{ route('category.show', $category->id) }}"
+                                                    class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
+                                                    {{ $category->categoryName }}
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     <div class="ms-auto">
                                         <form>
