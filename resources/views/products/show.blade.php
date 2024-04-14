@@ -56,14 +56,16 @@
                                                     width="15px">
                                             </span>
                                         </div>
-                                        @foreach ($categories as $category)
-                                            <div x-show="open" style="display: none">
-                                                <a href="{{ route('category.show', $category->id) }}"
-                                                    class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
-                                                    {{ $category->categoryName }}
-                                                </a>
-                                            </div>
-                                        @endforeach
+                                        <div class="overflow-auto" style="height: 90px">
+                                            @foreach ($categories as $category)
+                                                <div x-show="open" style="display: none">
+                                                    <a href="{{ route('category.show', $category->id) }}"
+                                                        class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
+                                                        {{ $category->categoryName }}
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                     <div class="ms-auto">
                                         <form>
@@ -121,62 +123,81 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($products as $product)
-                                                                <tr
-                                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                                    <td
-                                                                        class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
-                                                                        <div class="flex items-center">
-                                                                            <img src="assets/images/products/02.png"
-                                                                                alt=""
-                                                                                class="me-2 h-8 inline-block">
-                                                                            <div class="self-center">
-                                                                                <h5
-                                                                                    class="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                                                                    {{ $product->title }}</h5>
+                                                            @if (count($products))
+                                                                @foreach ($products as $product)
+                                                                    <tr
+                                                                        class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                                                        <td
+                                                                            class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
+                                                                            <div class="flex items-center">
+                                                                                <img src="{{ '/home/haseeb/What Else/AdminPanel/storage/app/products/' . $product->image }}"
+                                                                                    alt=""
+                                                                                    class="me-2 h-8 inline-block"
+                                                                                    width="60px">
+                                                                                <div class="self-center">
+                                                                                    <h5
+                                                                                        class="text-sm font-semibold text-slate-700 dark:text-gray-400">
+                                                                                        {{ $product->title }}</h5>
+                                                                                </div>
                                                                             </div>
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            <a href="#"
+                                                                                class="text-brand-500 underline">
+                                                                                @if ($product->category->categoryName !== null)
+                                                                                    {{ $product->category->categoryName }}
+                                                                                @else
+                                                                                    Unknown Category
+                                                                                @endif
+                                                                            </a>
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            <span
+                                                                                class="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">In
+                                                                                stock</span>
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-lg text-gray-800 whitespace-nowrap dark:text-gray-400">
+                                                                            $ {{ $product->price }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            {{ $product->created_at->diffForHumans() }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            <a
+                                                                                href="{{ route('product.edit', $product->id) }}"><i
+                                                                                    class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
+                                                                            <a
+                                                                                href="{{ route('product.destroy', $product->id) }}"><i
+                                                                                    class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @else
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <div class="text-3xl text-center">No Product
                                                                         </div>
                                                                     </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        <a href="#"
-                                                                            class="text-brand-500 underline">{{ $product->category->categoryName }}</a>
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        <span
-                                                                            class="bg-green-600/5 text-green-600 text-[11px] font-medium px-2.5 py-0.5 rounded h-5">In
-                                                                            stock</span>
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-lg text-gray-800 whitespace-nowrap dark:text-gray-400">
-                                                                        $ {{ $product->price }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        {{ $product->created_at->diffForHumans() }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        <a
-                                                                            href="{{ route('product.edit', $product->id) }}"><i
-                                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                                        <a
-                                                                            href="{{ route('product.destroy', $product->id) }}"><i
-                                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                                    </td>
                                                                 </tr>
-                                                            @endforeach
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 </div><!--end div-->
-                                            </div><!--end div-->
-                                        </div><!--end grid-->
+                                            </div><!--end grid-->
+                                        </div><!--end div-->
                                     </div>
                                 </div>
                             </div><!--end card-body-->
                         </div><!--end card-->
                     </div><!--end col-->
+                </div>
+                <div class="container mx-auto p-4">
+                    {{ $products->links() }}
                 </div>
                 @if (session()->has('success'))
                     <script>

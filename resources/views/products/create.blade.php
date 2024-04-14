@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
         <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
+
     </x-slot>
 
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
@@ -48,30 +49,26 @@
             </div><!--end container-->
 
             <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
-                <div
-                    class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 justify-between">
-                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-3 xl:col-span-3">
-                        <div class="w-full relative p-4">
-                            <label for="" class="font-medium text-sm text-slate-600 dark:text-slate-400">Upload
-                                Image</label>
-                            <div class="w-full h-56 mx-auto  mb-4">
-                                <input type="file" class="filepond h-56" name="filepond"
-                                    accept="image/png, image/jpeg, image/gif" />
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 ">
-                                <div class="col-span-1">
-                                    <input type="file" class="filepond" />
+                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div
+                        class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 justify-between">
+                        <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-3 xl:col-span-3">
+                            <div class="w-full relative p-4">
+                                <label for=""
+                                    class="font-medium text-sm text-slate-600 dark:text-slate-400">Upload
+                                    Image</label>
+                                <div class="w-full h-56 mx-auto  mb-4">
+                                    <input type="file" class="cursor-pointer" name="image" />
                                 </div>
-                                <div class="col-span-1">
-                                    <input type="file" class="filepond" />
-                                </div>
-                            </div>
-                        </div><!--end card-->
-                    </div><!--end col-->
-                    <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-9">
-                        <div class="w-full relative mb-4">
-                            <form action="{{ route('product.store') }}" method="POST">
-                                @csrf
+                                @error('image')
+                                    <div class="font-bold text-red-500 p-2">{{ $message }}</div>
+                                @enderror
+                            </div><!--end card-->
+                        </div><!--end col-->
+                        <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-9">
+                            <div class="w-full relative mb-4">
+
                                 <div class="flex-auto p-0 md:p-4">
                                     <div class="mb-2">
                                         <label for="title"
@@ -174,11 +171,10 @@
                                             Product</button>
                                     </div>
                                 </div>
-                            </form>
-                        </div><!--end card-->
-                    </div><!--end col-->
-                </div> <!--end grid-->
-                <!-- footer -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 @if (session()->has('success'))
                     <script>
                         Swal.fire({

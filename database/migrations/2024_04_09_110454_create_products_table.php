@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreignId('category_id');
             $table->string('discription');
             $table->string('productDate');
+            $table->string('image');
             $table->string('price');
             $table->string('gender');
             $table->string('size');

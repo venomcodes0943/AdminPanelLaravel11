@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::cursorPaginate(10);
         $categories = Category::all();
         return view('products.show', ['products' => $products, 'categories' => $categories]);
     }
@@ -39,8 +39,15 @@ class ProductController extends Controller
             'category_id' => 'required',
             'productDate' => 'required',
             'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            // dd($image);
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('products', $imageName);
+            $credential['image'] = $imageName;
+        }
         $credential['category_id'] = $request->category_id;
         $credential['gender'] = $request->gender;
         $credential['size'] = $request->size;
