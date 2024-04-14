@@ -35,7 +35,6 @@ class CategoryController extends Controller
         ]);
 
         $categorySlug = strtolower(str_replace(' ', '-', $request->categorySlug));
-
         $credential = [
             'categoryName' => $request->categoryName,
             'categorySlug' => $categorySlug,
@@ -75,6 +74,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('category.index')->with('deleted', true);
     }
 }

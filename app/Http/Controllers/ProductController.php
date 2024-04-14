@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -32,7 +33,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $credential = $request->validate([
             'title' => 'required',
             'discription' => 'required',
@@ -43,9 +43,8 @@ class ProductController extends Controller
         ]);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            // dd($image);
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('products', $imageName);
+            $image->storeAs('/images', $imageName);
             $credential['image'] = $imageName;
         }
         $credential['category_id'] = $request->category_id;
@@ -86,10 +85,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        // dd($id);
-        // $product = Product::findOrFail($id);
-        // $product->delete();
-        // return redirect()->route('product.index')->with('deleted', true);
-        echo $id;
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('product.index')->with('deleted', true);
     }
 }

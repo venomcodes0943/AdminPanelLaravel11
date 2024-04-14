@@ -93,7 +93,7 @@
                                                                             <div class="self-center">
                                                                                 <h5
                                                                                     class="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                                                                    {{ $category->categoryName }}</h5>
+                                                                                    {{ $category->categorySlug }}</h5>
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -106,9 +106,16 @@
                                                                         <a
                                                                             href="{{ route('category.edit', $category->id) }}"><i
                                                                                 class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                                        <a
-                                                                            href="{{ route('category.destroy', $category->id) }}"><i
-                                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
+                                                                        <form class="inline-block"
+                                                                            action="{{ route('category.destroy', $category->id) }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            @method('delete')
+                                                                            <button type="submit">
+                                                                                <i
+                                                                                    class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
+                                                                            </button>
+                                                                        </form>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

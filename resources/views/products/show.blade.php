@@ -50,7 +50,11 @@
                                     <div class="mb-2 w-44" x-data="{ open: false }" @click.away ="open=false">
                                         <div id="Category" @click="open = !open"
                                             class="w-full flex items-center justify-between rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer">
-                                            <span>Categories</span>
+                                            @if (count($categories))
+                                                <span>Categories</span>
+                                            @else
+                                                <span>No Categories</span>
+                                            @endif
                                             <span>
                                                 <img src="{{ asset('/assets/images/down-arrow.png') }}" alt=""
                                                     width="15px">
@@ -130,8 +134,8 @@
                                                                         <td
                                                                             class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
                                                                             <div class="flex items-center">
-                                                                                <img src="{{ '/home/haseeb/What Else/AdminPanel/storage/app/products/' . $product->image }}"
-                                                                                    alt=""
+                                                                                <img src="{{ storage_path('/images/' . $product->image) }}"
+                                                                                    alt="{{ $product->title }}"
                                                                                     class="me-2 h-8 inline-block"
                                                                                     width="60px">
                                                                                 <div class="self-center">
@@ -171,9 +175,16 @@
                                                                             <a
                                                                                 href="{{ route('product.edit', $product->id) }}"><i
                                                                                     class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                                            <a
-                                                                                href="{{ route('product.destroy', $product->id) }}"><i
-                                                                                    class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
+                                                                            <form class="inline-block"
+                                                                                action="{{ route('product.destroy', $product->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('delete')
+                                                                                <button type="submit">
+                                                                                    <i
+                                                                                        class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
+                                                                                </button>
+                                                                            </form>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -199,14 +210,14 @@
                 <div class="container mx-auto p-4">
                     {{ $products->links() }}
                 </div>
-                @if (session()->has('success'))
+                @if (session()->has('deleted'))
                     <script>
                         Swal.fire({
                             title: "Product Deleted Successfully :)",
                             icon: 'success'
                         });
                     </script>
-                @endif <!--end grid-->
+                @endif
                 <div
                     class="absolute bottom-0 -left-4 -right-4 block print:hidden border-t p-4 h-[52px] dark:border-slate-700/40">
                     <div class="container">

@@ -152,7 +152,8 @@
                     <img class="h-8 w-8 rounded-full" src="{{ asset('assets/images/users/avatar-1.png') }}"
                         alt="user photo" />
                     <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
-                        <span class="block font-medium text-slate-600 dark:text-gray-300">Maria Gibson</span>
+                        <span
+                            class="block font-medium text-slate-600 dark:text-gray-300">{{ auth()->user()->name }}</span>
                         <span class="-mt-0.5 block text-xs text-slate-500 dark:text-gray-400">Admin</span>
                     </span>
                 </button>
@@ -191,7 +192,7 @@
                                 Earnings</a>
                         </li>
                         <li>
-                            <a href="/auth-lock-screen.html"
+                            <a href="{{ route('logout') }}"
                                 class="flex items-center py-2 px-3 text-sm text-red-500 hover:bg-gray-50 hover:text-red-600
                           dark:text-red-500 dark:hover:bg-gray-900/20
                           dark:hover:text-red-500">
