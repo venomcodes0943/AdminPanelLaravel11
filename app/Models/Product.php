@@ -12,6 +12,15 @@ class Product extends Model
     protected $with = ['category', 'vendor'];
     protected $guarded = [];
 
+    public function scopeSearch($query, $search)
+    {
+        if ($search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        }
+        return $query;
+    }
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);

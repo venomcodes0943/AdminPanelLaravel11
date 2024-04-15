@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products = Product::cursorPaginate(10);
+        $search = request('search');
+        $products = Product::latest()->search($search)->simplePaginate(10);
         $categories = Category::all();
         return view('products.show', ['products' => $products, 'categories' => $categories]);
     }

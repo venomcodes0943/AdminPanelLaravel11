@@ -64,8 +64,8 @@
                                 @error('image')
                                     <div class="font-bold text-red-500 p-2">{{ $message }}</div>
                                 @enderror
-                            </div><!--end card-->
-                        </div><!--end col-->
+                            </div>
+                        </div>
                         <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-9">
                             <div class="w-full relative mb-4">
                                 <div class="flex-auto p-0 md:p-4">
