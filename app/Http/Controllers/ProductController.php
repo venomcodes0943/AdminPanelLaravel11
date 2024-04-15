@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -70,8 +71,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        echo $id;
+        $product = Product::findOrFail($id);
+        $category = Category::all();
+        return view('products.edit', ['product' => $product, 'categoryData' => $category]);
     }
 
     /**
@@ -79,7 +81,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $credential = $request->validate([
+            'title' => 'required',
+            'discription' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $credential['gender'] = $request->gender;
+        $credential['size'] = $request->size;
+        $credential['vendor_id'] = 1;
+        $credential['updated_at'] = now();
+        $product = Product::findOrFail($id);
+        $product->fill($credential);
+
+        if ($request->hasFile('image')) {
+            // Delete previous image if it exists
+            if ($product->image) {
+                Storage::delete('/images/' . $product->image);
+            }
+
+            // Store the new image
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('/images', $imageName);
+
+            // Update the product's image attribute
+            $product->image = $imageName;
+        }
+        $product->save();
+        return redirect()->route('product.index')->with('updated', true);
     }
 
     /**

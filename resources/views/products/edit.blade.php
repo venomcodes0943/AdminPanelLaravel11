@@ -49,8 +49,9 @@
             </div><!--end container-->
 
             <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
-                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('put')
                     <div
                         class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 justify-between">
                         <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-3 xl:col-span-3">
@@ -59,7 +60,8 @@
                                     class="font-medium text-sm text-slate-600 dark:text-slate-400">Upload
                                     Image</label>
                                 <div class="w-full mx-auto  mb-4">
-                                    <input type="file" class="cursor-pointer" name="image" />
+                                    <input type="file" class="cursor-pointer" name="image"
+                                        value="{{ $product->image }}" />
                                 </div>
                                 @error('image')
                                     <div class="font-bold text-red-500 p-2">{{ $message }}</div>
@@ -74,7 +76,7 @@
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Title</label>
                                         <input type="text" id="title" name="title"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700"
-                                            placeholder="Title" value="{{ old('title') }}">
+                                            placeholder="Title" value="{{ $product->title }}">
                                     </div>
                                     @error('title')
                                         <div class="font-bold text-red-500 p-2">{{ $message }}</div>
@@ -82,11 +84,11 @@
                                     <div class="mb-2">
                                         <label for="category"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Category</label>
-                                        <select id="category" name="category_id" value="{{ old('category_id') }}"
+                                        <select id="category" name="category_id"
                                             class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                            <option class="dark:text-slate-700" selected>Categories</option>
                                             @foreach ($categoryData as $data)
-                                                <option class="dark:text-slate-700" value="{{ $data->id }}">
+                                                <option class="dark:text-slate-700" value="{{ $data->id }}"
+                                                    {{ $product->category && $data->id == $product->category->id ? 'selected' : '' }}>
                                                     {{ $data->categoryName }}</option>
                                             @endforeach
                                         </select>
@@ -99,30 +101,19 @@
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Description</label>
                                         <textarea id="description" rows="3" name="discription"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                                            placeholder="Description ..." value="{{ old('discription') }}">{{ old('discription') }}</textarea>
+                                            placeholder="Description ...">{{ $product->discription }}</textarea>
                                         @error('discription')
                                             <div class="font-bold text-red-500 p-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-2">
-                                        <div class="grid grid-cols-2 gap-3">
-                                            <div class="col-span-1">
-                                                <label for="Product-date"
-                                                    class="font-medium text-sm text-slate-600 dark:text-slate-400">Product
-                                                    Date</label>
-                                                <input type="date" id="Product-date"
-                                                    class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                                                    name="productDate" value="{{ old('date') }}">
-                                                @error('productDate')
-                                                    <div class="font-bold text-red-500">{{ $message }}</div>
-                                                @enderror
-                                            </div>
+                                        <div class="grid grid-cols-1 gap-3">
                                             <div class="col-span-1">
                                                 <label for="price"
                                                     class="font-medium text-sm text-slate-600 dark:text-slate-400">Price</label>
                                                 <input type="text" id="price" name="price"
                                                     class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700"
-                                                    placeholder="Price" value="{{ old('price') }}">
+                                                    placeholder="Price" value="{{ $product->price }}">
                                                 @error('price')
                                                     <div class="font-bold text-red-500">{{ $message }}</div>
                                                 @enderror
@@ -133,14 +124,18 @@
                                         <label for="gender"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">For this
                                             product</label>
-                                        <select id="gender" name="gender" value="{{ old('gender') }}"
+                                        <select id="gender" name="gender"
                                             class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700">
-                                            <option class="dark:text-slate-700">-- Gender --</option>
-                                            <option class="dark:text-slate-700">Male</option>
-                                            <option class="dark:text-slate-700">Female</option>
-                                            <option class="dark:text-slate-700">Children</option>
-                                            <option class="dark:text-slate-700">Other</option>
+                                            @foreach (['Male', 'Female', 'Children', 'Other'] as $option)
+                                                @if ($option === $product->gender)
+                                                    <option class="dark:text-slate-700" selected>{{ $option }}
+                                                    </option>
+                                                @else
+                                                    <option class="dark:text-slate-700">{{ $option }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
+
                                     </div>
                                     @error('gender')
                                         <div class="font-bold text-red-500 p-2">{{ $message }}</div>
@@ -148,15 +143,17 @@
                                     <div class="mb-2">
                                         <label for="sizing"
                                             class="font-medium text-sm text-slate-600 dark:text-slate-400">Size</label>
-                                        <select id="sizing" name="size" value="{{ old('size') }}"
+                                        <select id="sizing" name="size"
                                             class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-brand-500 dark:focus:border-brand-500  dark:hover:border-slate-700">
-                                            <option>Size</option>
-                                            <option>SM</option>
-                                            <option>MD</option>
-                                            <option>LG</option>
-                                            <option>XL</option>
-                                            <option>XXL</option>
+                                            @foreach (['SM', 'MD', 'LG', 'XL', 'XXL'] as $size)
+                                                @if ($size === $product->size)
+                                                    <option selected>{{ $size }}</option>
+                                                @else
+                                                    <option>{{ $size }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
+
                                     </div>
                                     @error('size')
                                         <div class="font-bold text-red-500 p-2">{{ $message }}</div>
@@ -171,10 +168,10 @@
                         </div>
                     </div>
                 </form>
-                @if (session()->has('success'))
+                @if (session()->has('updated'))
                     <script>
                         Swal.fire({
-                            title: "Product Successfully Added :)",
+                            title: "Product Successfully Updated :)",
                             icon: 'success'
                         });
                     </script>
