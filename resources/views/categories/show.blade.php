@@ -74,51 +74,62 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($categories as $category)
-                                                                <tr
-                                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                                    <td
-                                                                        class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
-                                                                        <div class="flex items-center">
-                                                                            <div class="self-center">
-                                                                                <h5
-                                                                                    class="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                                                                    {{ $category->categoryName }}</h5>
+                                                            @if (count($categories))
+                                                                @foreach ($categories as $category)
+                                                                    <tr
+                                                                        class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                                                        <td
+                                                                            class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
+                                                                            <div class="flex items-center">
+                                                                                <div class="self-center">
+                                                                                    <h5
+                                                                                        class="text-sm font-semibold text-slate-700 dark:text-gray-400">
+                                                                                        {{ $category->categoryName }}
+                                                                                    </h5>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
-                                                                        <div class="flex items-center">
-                                                                            <div class="self-center">
-                                                                                <h5
-                                                                                    class="text-sm font-semibold text-slate-700 dark:text-gray-400">
-                                                                                    {{ $category->categorySlug }}</h5>
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
+                                                                            <div class="flex items-center">
+                                                                                <div class="self-center">
+                                                                                    <h5
+                                                                                        class="text-sm font-semibold text-slate-700 dark:text-gray-400">
+                                                                                        {{ $category->categorySlug }}
+                                                                                    </h5>
+                                                                                </div>
                                                                             </div>
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            {{ $category->created_at->diffForHumans() }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                            <a
+                                                                                href="{{ route('category.edit', $category->id) }}"><i
+                                                                                    class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
+                                                                            <form class="inline-block"
+                                                                                action="{{ route('category.destroy', $category->id) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                @method('delete')
+                                                                                <button type="submit">
+                                                                                    <i
+                                                                                        class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @else
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <div class="text-3xl text-center">No Category
                                                                         </div>
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        {{ $category->created_at->diffForHumans() }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                        <a
-                                                                            href="{{ route('category.edit', $category->id) }}"><i
-                                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                                        <form class="inline-block"
-                                                                            action="{{ route('category.destroy', $category->id) }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            @method('delete')
-                                                                            <button type="submit">
-                                                                                <i
-                                                                                    class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
-                                                                            </button>
-                                                                        </form>
                                                                     </td>
                                                                 </tr>
-                                                            @endforeach
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 </div><!--end div-->
