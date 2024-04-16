@@ -15,7 +15,10 @@ class Product extends Model
     public function scopeSearch($query, $search)
     {
         if ($search) {
-            return $query->where('title', 'like', '%' . $search . '%');
+            return $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('category', function ($query) use ($search) {
+                    $query->where('categoryName', 'like', '%' . $search . '%');
+                });
         }
         return $query;
     }
