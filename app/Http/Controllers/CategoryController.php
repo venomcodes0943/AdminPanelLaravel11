@@ -50,7 +50,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -58,7 +58,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('categories.edit', ['data' => $category]);
     }
 
     /**
@@ -67,6 +68,17 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $credential = $request->validate([
+            'categoryName' => 'required|unique:categories,categoryName',
+            'categorySlug' => 'required|unique:categories,categorySlug',
+        ]);
+        $categorySlug = strtolower(str_replace(' ', '-', $request->categorySlug));
+        $credential['categorySlug'] = $categorySlug;
+        $category = Category::findOrFail($id);
+        $category->fill($credential);
+
+        $category->save();
+        return redirect()->route('category.index')->with('success', true);
     }
 
     /**

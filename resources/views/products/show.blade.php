@@ -104,6 +104,10 @@
                                                         <thead class="bg-gray-50 dark:bg-slate-700/20">
                                                             <tr>
                                                                 <th scope="col"
+                                                                    class="pl-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                    No.
+                                                                </th>
+                                                                <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                                                     Product & Title
                                                                 </th>
@@ -130,10 +134,20 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @if (count($products))
+                                                            @if (count($products) > 0)
+                                                                @php
+                                                                    $i = 0;
+                                                                @endphp
                                                                 @foreach ($products as $product)
+                                                                    @php
+                                                                        $i++;
+                                                                    @endphp
                                                                     <tr
                                                                         class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                                                        <td
+                                                                            class="p-3 font-bold text-[#000] text-sm whitespace-nowrap dark:text-gray-400">
+                                                                            {{ $loop->iteration + $products->perPage() * ($products->currentPage() - 1) }}
+                                                                        </td>
                                                                         <td
                                                                             class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
                                                                             <div class="flex items-center">

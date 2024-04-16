@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $search = request('search');
-        $products = Product::latest()->search($search)->simplePaginate(10);
+        $products = Product::latest()->search($search)->simplePaginate(15);
         $categories = Category::all();
         return view('products.show', ['products' => $products, 'categories' => $categories]);
     }
