@@ -48,7 +48,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '-' . $image->getClientOriginalName();
-            $image->storeAs('/images', $imageName); // Store in public/images
+            $image->storeAs('public/', $imageName); // Store in public/images
             $credential['image'] = $imageName;
         }
 
