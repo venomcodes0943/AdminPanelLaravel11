@@ -151,10 +151,18 @@
                                                                         <td
                                                                             class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
                                                                             <div class="flex items-center">
-                                                                                <img src="{{ asset('storage/' . $product->image) }}"
-                                                                                    alt="{{ $product->title }}"
-                                                                                    class="me-2 h-8 rounded shadow"
-                                                                                    width="40px">
+                                                                                @if (strpos($product->image, 'https://via.placeholder.com') !== false)
+                                                                                    <img src="{{ $product->image }}"
+                                                                                        alt="{{ $product->title }}"
+                                                                                        class="me-2 h-8 rounded shadow"
+                                                                                        width="40px">
+                                                                                @else
+                                                                                    <img src="{{ asset('storage/' . $product->image) }}"
+                                                                                        alt="{{ $product->title }}"
+                                                                                        class="me-2 h-8 rounded shadow"
+                                                                                        width="40px">
+                                                                                @endif
+
                                                                                 <div class="self-center">
                                                                                     <h5
                                                                                         class="text-sm font-semibold text-slate-700 dark:text-gray-400">

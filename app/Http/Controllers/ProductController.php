@@ -107,7 +107,7 @@ class ProductController extends Controller
             // Store the new image
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/images', $imageName);
+            $image->storeAs('public/', $imageName);
 
             // Update the product's image attribute
             $product->image = $imageName;
