@@ -471,152 +471,55 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- 1 -->
-                                                <tr
-                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                    <td
-                                                        class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                        <img src="assets/images/products/01.png" alt=""
-                                                            class="me-2 h-10 inline-block">Robotech Camera EDM
-                                                        5D(White)
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        $50 <del class="text-gray-400">$90</del>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        450<small class="text-gray-400">(500)</small>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <span
-                                                            class="focus:outline-none text-[12px] bg-green-600/10 text-green-700 dark:text-green-600 rounded font-medium py-1 px-2">Stock</span>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <a href="#"><i
-                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                        <a href="#"><i
-                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!-- 2 -->
-                                                <tr
-                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                    <td
-                                                        class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                        <img src="assets/images/products/03.png" alt=""
-                                                            class="me-2 h-10 inline-block">Robotech VR 5D (Black)
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        $39 <del class="text-gray-400">$99</del>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        700<small class="text-gray-400">(700)</small>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <span
-                                                            class="focus:outline-none text-[12px] bg-red-500/10 text-red-700 dark:text-red-400 rounded font-medium py-1 px-2">Sold</span>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <a href="#"><i
-                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                        <a href="#"><i
-                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!-- 3 -->
-                                                <tr
-                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                    <td
-                                                        class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                        <img src="assets/images/products/02.png" alt=""
-                                                            class="me-2 h-10 inline-block">Robotech Shoes Max-Zon
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        $49 <del class="text-gray-400">$88</del>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        850<small class="text-gray-400">(900)</small>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <span
-                                                            class="focus:outline-none text-[12px] bg-green-600/10 text-green-700 dark:text-green-600 rounded font-medium py-1 px-2">Stock</span>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <a href="#"><i
-                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                        <a href="#"><i
-                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!-- 4 -->
-                                                <tr
-                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
-                                                    <td
-                                                        class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                        <img src="assets/images/products/04.png" alt=""
-                                                            class="me-2 h-10 inline-block">Robotech Mask N99 [ISI]
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        $5 <del class="text-gray-400">$9</del>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        1850<small class="text-gray-400">(2000)</small>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <span
-                                                            class="focus:outline-none text-[12px] bg-green-600/10 text-green-700 dark:text-green-600 rounded font-medium py-1 px-2">Stock</span>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <a href="#"><i
-                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                        <a href="#"><i
-                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <!-- 5 -->
-                                                <tr class="bg-white  dark:bg-gray-900">
-                                                    <td
-                                                        class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                        <img src="assets/images/products/01.png" alt=""
-                                                            class="me-2 h-10 inline-block">Robotech Camera EDM
-                                                        5D(White)
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        $50 <del class="text-gray-400">$90</del>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        450<small class="text-gray-400">(500)</small>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <span
-                                                            class="focus:outline-none text-[12px] bg-red-500/10 text-red-700 dark:text-red-400 rounded font-medium py-1 px-2">Sold</span>
-                                                    </td>
-                                                    <td
-                                                        class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                        <a href="#"><i
-                                                                class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
-                                                        <a href="#"><i
-                                                                class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></a>
-                                                    </td>
-                                                </tr>
+                                                @if (count($product))
+                                                    @foreach ($product as $data)
+                                                        <tr
+                                                            class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                                                            <td
+                                                                class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
+                                                                <img src="assets/images/products/01.png"
+                                                                    alt=""
+                                                                    class="me-2 h-10 inline-block">{{ $data->title }}
+                                                            </td>
+                                                            <td
+                                                                class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                ${{ $data->price }}
+                                                            </td>
+                                                            <td
+                                                                class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                @php echo rand(200, 400);@endphp<small
+                                                                    class="text-gray-400">(@php echo rand(400, 800);@endphp)</small>
+                                                            </td>
+                                                            <td
+                                                                class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                <span
+                                                                    class="focus:outline-none text-[12px] bg-green-600/10 text-green-700 dark:text-green-600 rounded font-medium py-1 px-2">Stock</span>
+                                                            </td>
+                                                            <td
+                                                                class="p-3 text-base text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                <a href="{{ route('product.edit', $data->id) }}"><i
+                                                                        class="icofont-ui-edit text-lg text-gray-500 dark:text-gray-400"></i></a>
+                                                                <form class="inline-block"
+                                                                    action="{{ route('product.destroy', $data->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button type="submit">
+                                                                        <i
+                                                                            class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            <div class="pt-4 font-semibold text-center text-2xl">No
+                                                                Product Now</div>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -624,8 +527,15 @@
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->
-                </div><!--end inner-grid-->
-                <!-- footer -->
+                </div>
+                @if (session()->has('deleted'))
+                    <script>
+                        Swal.fire({
+                            title: "Product Deleted Successfully :)",
+                            icon: 'success'
+                        });
+                    </script>
+                @endif
                 <div
                     class="absolute bottom-0 -left-4 -right-4 block print:hidden border-t p-4 h-[52px] dark:border-slate-700/40">
                     <div class="container">

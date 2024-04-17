@@ -151,10 +151,9 @@
                                                                         <td
                                                                             class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
                                                                             <div class="flex items-center">
-                                                                                <img src="{{ storage_path('/images/' . $product->image) }}"
+                                                                                <img src="{{ asset('storage/images/' . $product->image) }}"
                                                                                     alt="{{ $product->title }}"
-                                                                                    class="me-2 h-8 inline-block"
-                                                                                    width="60px">
+                                                                                    class="me-2 h-8" width="60px">
                                                                                 <div class="self-center">
                                                                                     <h5
                                                                                         class="text-sm font-semibold text-slate-700 dark:text-gray-400">

@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'discription' => fake()->sentence(),
             'productDate' => fake()->time(),
             'image' => fake()->imageUrl(),
-            'price' => fake()->randomNumber(3),
+            'price' => fake()->randomNumber(4),
             'gender' => fake()->randomElement(['Male', 'Femail', 'Children', 'other']),
             'size' => fake()->randomElement(['SM', 'MD', 'LG', 'XL', 'XXl'])
         ];

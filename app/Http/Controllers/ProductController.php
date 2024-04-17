@@ -44,12 +44,14 @@ class ProductController extends Controller
             'price' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/images', $imageName);
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $image->storeAs('/images', $imageName); // Store in public/images
             $credential['image'] = $imageName;
         }
+
         $credential['category_id'] = $request->category_id;
         $credential['gender'] = $request->gender;
         $credential['size'] = $request->size;
@@ -121,6 +123,6 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('product.index')->with('deleted', true);
+        return redirect()->back()->with('deleted', true);
     }
 }
