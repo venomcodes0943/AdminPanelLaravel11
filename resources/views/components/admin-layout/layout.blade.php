@@ -18,9 +18,8 @@
 
     <!-- leftbar-tab-menu -->
 
-    <x-sidebar />
-    <x-navbar />
-
+    <x-admin-layout.sidebar />
+    <x-admin-layout.navbar />
 
     {{ $slot }}
 

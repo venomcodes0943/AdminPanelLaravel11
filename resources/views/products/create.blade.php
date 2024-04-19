@@ -1,4 +1,4 @@
-<x-layout>
+<x-admin-layout.layout>
     <x-slot name="head">
         <link rel="shortcut icon" href="{{ asset('assets/css/tailwind.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/libs/filepond/filepond.min.css') }}">
@@ -223,4 +223,4 @@
             });
         </script>
     </x-slot>
-</x-layout>
+</x-admin-layout.layout>

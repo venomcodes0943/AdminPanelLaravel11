@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'title' => fake()->randomElement(['Car', 'Phone', 'Chair', 'Laptop', 'Fan', 'Books', 'Pencil']),
             'vendor_id' => fake()->numberBetween(1, 4),
             'category_id' => fake()->randomElement($categoryIds),
-            'discription' => fake()->sentence(),
+            'discription' => fake()->paragraphs(3, true),
             'productDate' => fake()->time(),
             'image' => fake()->imageUrl(),
             'price' => fake()->randomNumber(4),
