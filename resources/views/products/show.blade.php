@@ -162,7 +162,6 @@
                                                                                         class="me-2 h-8 rounded shadow"
                                                                                         width="40px">
                                                                                 @endif
-
                                                                                 <div class="self-center">
                                                                                     <h5
                                                                                         class="text-sm font-semibold text-slate-700 dark:text-gray-400">

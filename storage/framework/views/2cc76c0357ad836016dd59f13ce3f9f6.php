@@ -486,9 +486,18 @@
                                                             class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                             <td
                                                                 class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                                <img src="assets/images/products/01.png"
-                                                                    alt=""
-                                                                    class="me-2 h-10 inline-block"><?php echo e($data->title); ?>
+                                                                <?php if(strpos($data->image, 'https://via.placeholder.com') !== false): ?>
+                                                                    <img src="<?php echo e($data->image); ?>"
+                                                                        alt="<?php echo e($data->title); ?>"
+                                                                        class="me-2 h-8 rounded shadow inline-block"
+                                                                        width="40px">
+                                                                <?php else: ?>
+                                                                    <img src="<?php echo e(asset('storage/' . $data->image)); ?>"
+                                                                        alt="<?php echo e($data->title); ?>"
+                                                                        class="me-2 h-8 rounded shadow inline-block"
+                                                                        width="40px">
+                                                                <?php endif; ?>
+                                                                <?php echo e($data->title); ?>
 
                                                             </td>
                                                             <td
@@ -539,6 +548,14 @@
                         </div> <!--end card-->
                     </div><!--end col-->
                 </div>
+                <?php if(session()->has('updated')): ?>
+                    <script>
+                        Swal.fire({
+                            title: "Product Updated Successfully :)",
+                            icon: 'success'
+                        });
+                    </script>
+                <?php endif; ?>
                 <?php if(session()->has('deleted')): ?>
                     <script>
                         Swal.fire({
