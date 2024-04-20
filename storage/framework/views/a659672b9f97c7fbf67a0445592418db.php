@@ -1,10 +1,10 @@
-<?php if (isset($component)) { $__componentOriginal1f9e5f64f242295036c059d9dc1c375c = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal1f9e5f64f242295036c059d9dc1c375c = $attributes; } ?>
-<?php $component = App\View\Components\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('layout'); ?>
+<?php if (isset($component)) { $__componentOriginal078db12bf967074f626cca13b43a4dfd = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal078db12bf967074f626cca13b43a4dfd = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.admin-layout.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin-layout.layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Layout::class))->getConstructor()): ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
 <?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
@@ -290,12 +290,12 @@ unset($__errorArgs, $__bag); ?>
      <?php $__env->endSlot(); ?>
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginal1f9e5f64f242295036c059d9dc1c375c)): ?>
-<?php $attributes = $__attributesOriginal1f9e5f64f242295036c059d9dc1c375c; ?>
-<?php unset($__attributesOriginal1f9e5f64f242295036c059d9dc1c375c); ?>
+<?php if (isset($__attributesOriginal078db12bf967074f626cca13b43a4dfd)): ?>
+<?php $attributes = $__attributesOriginal078db12bf967074f626cca13b43a4dfd; ?>
+<?php unset($__attributesOriginal078db12bf967074f626cca13b43a4dfd); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginal1f9e5f64f242295036c059d9dc1c375c)): ?>
-<?php $component = $__componentOriginal1f9e5f64f242295036c059d9dc1c375c; ?>
-<?php unset($__componentOriginal1f9e5f64f242295036c059d9dc1c375c); ?>
+<?php if (isset($__componentOriginal078db12bf967074f626cca13b43a4dfd)): ?>
+<?php $component = $__componentOriginal078db12bf967074f626cca13b43a4dfd; ?>
+<?php unset($__componentOriginal078db12bf967074f626cca13b43a4dfd); ?>
 <?php endif; ?>
 <?php /**PATH /home/haseeb/What Else/AdminPanel/resources/views/products/create.blade.php ENDPATH**/ ?>

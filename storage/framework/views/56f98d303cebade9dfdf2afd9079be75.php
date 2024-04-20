@@ -17,7 +17,11 @@
         <link rel="stylesheet" href="<?php echo e(asset('assets/libs/icofont/icofont.min.css')); ?>">
         <link href="<?php echo e(asset('assets/libs/flatpickr/flatpickr.min.css')); ?>" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo e(asset('assets/css/tailwind.min.css')); ?>">
-
+        <style>
+            #img-container {
+                margin: 0px 10px;
+            }
+        </style>
      <?php $__env->endSlot(); ?>
 
     <div class="container my-4">

@@ -156,9 +156,16 @@
                                         @foreach (session('cart') as $item)
                                             <div class="-mx-1 flex items-center justify-between pb-4">
                                                 <div class="flex items-center px-1">
-                                                    <div class="me-3 h-10 w-full max-w-[40px] overflow-hidden rounded">
-                                                        <img src="{{ asset('assets/images/products/01.png') }}"
-                                                            alt="product image" class="w-8 h-8">
+                                                    <div class="me-3 h-10 w-full max-w-[40px]">
+                                                        @if (strpos($item['image'], 'https://via.placeholder.com') !== false)
+                                                            <img src="{{ $item['image'] }}" alt="product image"
+                                                                class="w-8 h-8 rounded">
+                                                        @else
+                                                            <a href="#">
+                                                                <img src="{{ asset('storage/' . $item['image']) }}"
+                                                                    alt="product image" class="w-8 h-8 rounded">
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="product-details.html"
@@ -182,7 +189,7 @@
                                 </div>
                                 @if (session()->has('cart'))
                                     <div>
-                                        <a href="customers-checkout.html"
+                                        <a href="{{ route('cart.checkout') }}"
                                             class="flex mb-1 w-full items-center justify-center rounded-md bg-brand py-[10px] px-10 text-center text-base font-normal text-white hover:bg-opacity-90">
                                             Place Order
                                         </a>

@@ -8,7 +8,11 @@
         <link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
         <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
-
+        <style>
+            #img-container {
+                margin: 0px 10px;
+            }
+        </style>
     </x-slot>
 
     <div class="container my-4">

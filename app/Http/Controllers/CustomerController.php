@@ -10,7 +10,7 @@ class CustomerController extends Controller
     //
     public function index()
     {
-        $products = Product::simplePaginate(15);
+        $products = Product::latest()->simplePaginate(15);
         return view('customer.index', ['products' => $products]);
     }
 
@@ -42,6 +42,7 @@ class CustomerController extends Controller
             $cart[$id] = [
                 'id' => $product->id,
                 'title' => $product->title,
+                'image' => $product->image,
                 'price' => $product->price,
                 'quantity' => $request->quantity,
             ];
@@ -55,5 +56,11 @@ class CustomerController extends Controller
     {
         session()->forget('cart');
         return redirect()->route('customer.index')->with('success', true);
+    }
+
+
+    public function checkout()
+    {
+        return view('customer.checkout');
     }
 }
