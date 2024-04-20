@@ -234,12 +234,12 @@
                                         %
                                         off</span>
                                     @if (strpos($product->image, 'https://via.placeholder.com') !== false)
-                                        <a href="#">
+                                        <a href="{{ route('product.detail', ['id' => $product->id]) }}">
                                             <img src="{{ $product->image }}" alt=""
                                                 class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
                                         </a>
                                     @else
-                                        <a href="#">
+                                        <a href="{{ route('product.detail', ['id' => $product->id]) }}">
                                             <img src="{{ asset('storage/' . $product->image) }}" alt=""
                                                 class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
                                         </a>
@@ -261,8 +261,8 @@
                                     echo '</div>';
                                     ?>
                                     <h4 class="text-3xl font-medium dark:text-slate-300 mb-4"><sup
-                                            class="text-sm text-slate-500">$</sup>{{ round($product->price * ($random / 100)) }}<del
-                                            class="text-base text-slate-400">${{ $product->price }}</del>
+                                            class="text-sm text-slate-500">$</sup>{{ $product->price }}<del
+                                            class="text-base text-slate-400">${{ round($product->price * ($random / 10)) }}</del>
                                     </h4>
                                     <a href="{{ route('product.detail', ['id' => $product->id]) }}"
                                         class="px-4 py-1 lg:px-4 bg-transparent  text-brand text-base  transition hover:bg-brand-500/10 hover:text-brand-500 border border-slate-200 border-dashed font-medium w-full">Buy

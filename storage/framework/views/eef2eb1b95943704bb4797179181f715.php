@@ -8,6 +8,8 @@
     <meta content="Tailwind Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="Mannatthemes" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?php echo e(asset('/assets/images/favicon.ico')); ?>" />
     <!-- Css -->

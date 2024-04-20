@@ -23,6 +23,9 @@ Route::group(['middleware' => Authenticate::class], function () {
 
 Route::group(['controller' => CustomerController::class], function () {
     Route::get('/', 'index')->name('customer.index');
+    Route::get('/products', 'show')->name('customer.products');
     Route::get('/product-details/{id}', 'productDetail')->name('product.detail');
+    Route::post('/addToCart/{id}', 'addToCart')->name('product.cart');
+    Route::get('/clearMyCart', 'clearCart')->name('clear.cart');
 });
 

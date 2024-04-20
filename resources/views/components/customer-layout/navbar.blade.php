@@ -139,10 +139,12 @@
                                 id="Notifications" aria-expanded="false" data-fc-autoclose="both"
                                 data-fc-type="dropdown">
                                 <span data-lucide="shopping-cart" class=" w-5 h-5"></span>
-                                <span
-                                    class="absolute -top-1 -right-1 h-4 w-4 leading-4 rounded-full bg-brand text-[10px] font-semibold text-white">
-                                    2
-                                </span>
+                                @if (session()->has('cart'))
+                                    <span
+                                        class="absolute -top-1 -right-1 h-4 w-4 leading-4 rounded-full bg-brand text-[10px] font-semibold text-white">
+                                        {{ count(session('cart')) }}
+                                    </span>
+                                @endif
                             </button>
 
                             <div
@@ -150,65 +152,46 @@
                 divide-y divide-gray-100 rounded border-slate-700 md:border-white
                 text-base shadow dark:divide-gray-600 bg-white dark:bg-slate-800 w-72 p-5">
                                 <div class="mb-5 border-b dark:border-slate-700/40 pb-3">
-                                    <div class="-mx-1 flex items-center justify-between pb-4">
-                                        <div class="flex items-center px-1">
-                                            <div class="me-3 h-10 w-full max-w-[40px] overflow-hidden rounded">
-                                                <img src="{{ asset('assets/images/products/01.png') }}"
-                                                    alt="product image" class="w-8 h-8">
+                                    @if (session()->has('cart'))
+                                        @foreach (session('cart') as $item)
+                                            <div class="-mx-1 flex items-center justify-between pb-4">
+                                                <div class="flex items-center px-1">
+                                                    <div class="me-3 h-10 w-full max-w-[40px] overflow-hidden rounded">
+                                                        <img src="{{ asset('assets/images/products/01.png') }}"
+                                                            alt="product image" class="w-8 h-8">
+                                                    </div>
+                                                    <div>
+                                                        <a href="product-details.html"
+                                                            class="text-sm font-medium text-black hover:text-brand">
+                                                            {{ $item['title'] }}
+                                                        </a>
+                                                        <p class="truncate text-xs font-medium text-body-color">
+                                                            Quantity : {{ $item['quantity'] }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="px-1">
+                                                    <p class="text-base font-semibold text-black">
+                                                        ${{ $item['quantity'] * $item['price'] }}</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <a href="product-details.html"
-                                                    class="text-sm font-medium text-black hover:text-brand">
-                                                    Circular Sienna
-                                                </a>
-                                                <p class="truncate text-xs font-medium text-body-color">
-                                                    Awesome white shirt
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="px-1">
-                                            <p class="text-base font-semibold text-black">$36.00</p>
-                                        </div>
-                                    </div>
-                                    <div class="-mx-1 flex items-center justify-between py-4">
-                                        <div class="flex items-center px-1">
-                                            <div class="me-3 h-10 w-full max-w-[40px] overflow-hidden rounded">
-                                                <img src="{{ asset('assets/images/products/02.png') }}"
-                                                    alt="product image" class="w-8 h-8">
-                                            </div>
-                                            <div>
-                                                <a href="product-details.html"
-                                                    class="text-sm font-medium text-black hover:text-brand">
-                                                    Black T-shirt
-                                                </a>
-                                                <p class="truncate text-xs font-medium text-body-color">
-                                                    It's a nice black t-shirt
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="px-1">
-                                            <p class="text-base font-semibold text-black">$36.00</p>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @else
+                                        <div class="text-center font-bold">Cart Is Empty</div>
+                                    @endif
                                 </div>
-
-                                <div class="-mx-1 flex items-center justify-between  pb-6">
-                                    <div class="px-1">
-                                        <p class="text-base font-medium text-black">
-                                            Total Payable
-                                        </p>
+                                @if (session()->has('cart'))
+                                    <div>
+                                        <a href="customers-checkout.html"
+                                            class="flex mb-1 w-full items-center justify-center rounded-md bg-brand py-[10px] px-10 text-center text-base font-normal text-white hover:bg-opacity-90">
+                                            Place Order
+                                        </a>
+                                        <a href="{{ route('clear.cart') }}"
+                                            class="flex w-full items-center justify-center rounded-md bg-red-500 py-[10px] px-10 text-center text-base font-normal text-white hover:bg-opacity-90">
+                                            Clear Cart
+                                        </a>
                                     </div>
-                                    <div class="px-1">
-                                        <p class="text-base font-semibold text-black">$88.15</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <a href="customers-checkout.html"
-                                        class="flex w-full items-center justify-center rounded-md bg-brand py-[10px] px-10 text-center text-base font-normal text-white hover:bg-opacity-90">
-                                        Place Order
-                                    </a>
-                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="me-2  dropdown relative">
@@ -412,13 +395,13 @@
                             class="order-2 hidden w-full items-center justify-between md:order-1 md:ms-5 lg:flex md:w-auto">
                             <ul class="blcok items-center lg:flex px-4 md:px-0">
                                 <li>
-                                    <a href="customers-home.html"
+                                    <a href="{{ route('customer.index') }}"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="customers-products.html"
+                                    <a href="{{ route('customer.products') }}"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
                                         Products
                                     </a>

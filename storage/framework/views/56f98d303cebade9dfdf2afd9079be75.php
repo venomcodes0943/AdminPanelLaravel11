@@ -32,7 +32,6 @@
                         <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                             <div class="sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 text-center">
                                 <div id="img-container" class="w-[400px] text-center inline-block mx-auto">
-                                    
                                     <?php if(strpos($product->image, 'https://via.placeholder.com') !== false): ?>
                                         <a href="#">
                                             <img src="<?php echo e($product->image); ?>" alt="" class="inline-block">
@@ -79,10 +78,14 @@
                                     ?>
 
                                     <h6 class="text-[28px] text-slate-700 dark:text-slate-300 font-semibold mb-4">
-                                        <?php echo e(round($product->price * ($random / 100))); ?>
+                                        <?php echo e($product->price); ?>
 
-                                        <span
-                                            class="text-base text-slate-400 font-semibold"><del>$<?php echo e($product->price); ?></del></span>
+                                        <span class="text-base text-slate-400 font-semibold">
+                                            <del>
+                                                $<?php echo e(round($product->price * ($random / 10))); ?>
+
+                                            </del>
+                                        </span>
                                         <span class="text-red-500 text-base font-semibold ml-2"><?php echo $random ?> %
                                             Off</span>
                                     </h6>
@@ -92,21 +95,40 @@
                                         <?php echo e($product->discription); ?>
 
                                     </p>
-                                    
-
-                                    <input
-                                        class="form-input border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent  rounded-md mt-1 border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-0 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-brand-500  dark:hover:border-slate-700"
-                                        style="width:100px;" type="number" min="0" value="0"
-                                        id="example-number-input">
-                                    <button type="button"
-                                        class="inline-block focus:outline-none text-slate-600 hover:bg-brand-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-slate-400 dark:hover:text-white dark:border-gray-700 dark:hover:bg-brand-500  text-sm font-medium py-2 px-3 rounded"><i
-                                            class="ti ti-shopping-cart"></i> Add to cart</button>
+                                    <form action="<?php echo e(route('product.cart', ['id' => $product->id])); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <input
+                                            class="form-input border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent  rounded-md mt-1 border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-0 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-brand-500  dark:hover:border-slate-700"
+                                            style="width:100px;" type="number" min="1" value="1"
+                                            id="example-number-input" name="quantity">
+                                        <button type="submit"
+                                            class="inline-block focus:outline-none text-slate-600 hover:bg-brand-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-slate-400 dark:hover:text-white dark:border-gray-700 dark:hover:bg-brand-500  text-sm font-medium py-2 px-3 rounded"><i
+                                                class="ti ti-shopping-cart"></i> Add to cart</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div><!--end card-body-->
+                    <?php if(session()->has('error')): ?>
+                        <script>
+                            Swal.fire({
+                                title: "Cant Find Product :)",
+                                icon: 'error'
+                            });
+                        </script>
+                    <?php endif; ?>
+                    <?php if(session()->has('success')): ?>
+                        <script>
+                            Swal.fire({
+                                title: "Product Add To The Cart :)",
+                                icon: 'success'
+                            });
+                        </script>
+                    <?php endif; ?>
+
                 </div> <!--end card-->
-            </div><!--end col-->
+            </div>
+            <!--end col-->
         </div><!--end inner-grid-->
         <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
             <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12">
@@ -494,7 +516,6 @@
                 </div><!--end card-body-->
             </div><!--end col-->
         </div>
-        
     </div>
      <?php $__env->slot('script', null, []); ?> 
         <script src="<?php echo e(asset('assets/libs/lucide/umd/lucide.min.js')); ?>"></script>
