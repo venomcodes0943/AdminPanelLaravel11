@@ -151,10 +151,10 @@
                                 class="left-auto -right-10 md:right-0 z-50 my-1 hidden list-none
                 divide-y divide-gray-100 rounded border-slate-700 md:border-white
                 text-base shadow dark:divide-gray-600 bg-white dark:bg-slate-800 w-72 p-5">
-                                <div class="mb-5 border-b dark:border-slate-700/40 pb-3">
+                                <div class="mb-1 h-40 overflow-auto border-b dark:border-slate-700/40 pb-3">
                                     @if (session()->has('cart'))
                                         @foreach (session('cart') as $item)
-                                            <div class="-mx-1 flex items-center justify-between pb-4">
+                                            <div class="mx-1 flex items-center justify-between pb-4">
                                                 <div class="flex items-center px-1">
                                                     <div class="me-3 h-10 w-full max-w-[40px]">
                                                         @if (strpos($item['image'], 'https://via.placeholder.com') !== false)
@@ -180,6 +180,12 @@
                                                 <div class="px-1">
                                                     <p class="text-base font-semibold text-black">
                                                         ${{ $item['quantity'] * $item['price'] }}</p>
+                                                    <div class="font-semibold text-red-500">
+                                                        <a href="{{ route('cart.single.clear', ['itemId' => $item['id']]) }}"
+                                                            id="cart-cancel">
+                                                            Canel
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -188,6 +194,21 @@
                                     @endif
                                 </div>
                                 @if (session()->has('cart'))
+                                    <div class="flex pb-1 justify-between">
+                                        <div class="font-semibold">Total :</div>
+                                        <div class="font-semibold">
+                                            @php
+                                                $cart = session()->get('cart');
+                                                $totalPrice = 0;
+                                                foreach ($cart as $item) {
+                                                    if (isset($item['price']) && isset($item['quantity'])) {
+                                                        $totalPrice += $item['price'] * $item['quantity'];
+                                                    }
+                                                }
+                                                echo '$' . $totalPrice;
+                                            @endphp
+                                        </div>
+                                    </div>
                                     <div>
                                         <a href="{{ route('cart.checkout') }}"
                                             class="flex mb-1 w-full items-center justify-center rounded-md bg-brand py-[10px] px-10 text-center text-base font-normal text-white hover:bg-opacity-90">

@@ -63,4 +63,27 @@ class CustomerController extends Controller
     {
         return view('customer.checkout');
     }
+
+    public function clearSingleCart($itemId)
+    {
+        $cart = session()->get('cart', []);
+
+        if (array_key_exists($itemId, $cart)) {
+
+            unset($cart[$itemId]);
+
+            if (empty($cart)) {
+
+                session()->forget('cart');
+                return redirect()->route('customer.index');
+            } else {
+
+                session()->put('cart', $cart);
+                return redirect()->route('customer.index');
+            }
+
+        } else {
+            return redirect()->route('customer.index')->with('error', 'Item not found in cart.');
+        }
+    }
 }

@@ -385,7 +385,9 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment $202.00</button>
+                                    payment <?php
+                                        echo '$' . $totalPrice + 5 . '.00';
+                                    ?></button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->
@@ -481,7 +483,9 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment $202.00</button>
+                                    payment <?php
+                                        echo '$' . $totalPrice + 5 . '.00';
+                                    ?></button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->

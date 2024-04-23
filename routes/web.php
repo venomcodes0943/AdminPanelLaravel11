@@ -28,5 +28,6 @@ Route::group(['controller' => CustomerController::class], function () {
     Route::post('/addToCart/{id}', 'addToCart')->name('product.cart');
     Route::get('/clearMyCart', 'clearCart')->name('clear.cart');
     Route::get('/checkout', 'checkout')->name('cart.checkout');
+    Route::get('/clearSingleCart/{itemId}', 'clearSingleCart')->name('cart.single.clear');
 });
 
