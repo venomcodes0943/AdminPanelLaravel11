@@ -70,8 +70,14 @@
                                             </span>
                                         </div>
                                         <div class="overflow-auto" style="height: 90px">
-                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <form x-show="open" style="display: none" method="GET">
+                                            <form x-show="open" style="display: none" method="GET">
+                                                <a href="<?php echo e(route('product.index')); ?>"
+                                                    class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0
+                                                text-left
+                                                placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
+                                                    All
+                                                </a>
+                                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <button type="submit" name="search"
                                                         value="<?php echo e($category->categoryName); ?>"
                                                         class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0
@@ -80,8 +86,8 @@
                                                         <?php echo e($category->categoryName); ?>
 
                                                     </button>
-                                                </form>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="ms-auto">

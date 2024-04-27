@@ -61,8 +61,14 @@
                                             </span>
                                         </div>
                                         <div class="overflow-auto" style="height: 90px">
-                                            @foreach ($categories as $category)
-                                                <form x-show="open" style="display: none" method="GET">
+                                            <form x-show="open" style="display: none" method="GET">
+                                                <a href="{{ route('product.index') }}"
+                                                    class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0
+                                                text-left
+                                                placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
+                                                    All
+                                                </a>
+                                                @foreach ($categories as $category)
                                                     <button type="submit" name="search"
                                                         value="{{ $category->categoryName }}"
                                                         class="w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0
@@ -70,8 +76,8 @@
                                                         placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700 cursor-pointer block">
                                                         {{ $category->categoryName }}
                                                     </button>
-                                                </form>
-                                            @endforeach
+                                                @endforeach
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="ms-auto">
