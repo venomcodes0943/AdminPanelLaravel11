@@ -264,9 +264,14 @@
                                             class="text-sm text-slate-500">$</sup>{{ $product->price }}<del
                                             class="text-base text-slate-400">${{ round($product->price * ($random / 10)) }}</del>
                                     </h4>
-                                    <a href="{{ route('product.detail', ['id' => $product->id]) }}"
-                                        class="px-4 py-1 lg:px-4 bg-transparent  text-brand text-base  transition hover:bg-brand-500/10 hover:text-brand-500 border border-slate-200 border-dashed font-medium w-full">Buy
-                                        Now</a>
+                                    <div class="flex flex-col gap-2">
+                                        <a href="{{ route('product.detail', ['id' => $product->id]) }}"
+                                            class="px-4 py-1 lg:px-4 bg-transparent  text-brand text-base  transition hover:bg-brand-500/10 hover:text-brand-500 border border-slate-200 rounded font-semibold w-full">Buy
+                                            Now</a>
+                                        <a href="{{ route('customer.wishlist', ['id' => $product->id]) }}"
+                                            class="px-4 py-1 lg:px-4 bg-transparent  text-brand text-base  transition hover:bg-brand-500/10 hover:text-brand-500 border border-slate-200 rounded font-semibold w-full">Add
+                                            To Wishlist</a>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!--end card-->
@@ -276,6 +281,22 @@
             </div><!--end inner-grid-->
         </div><!--end container-->
     </div><!--end section-->
+    @if (session()->has('addtowish'))
+        <script>
+            Swal.fire({
+                title: "Successfully Added to Wishlist :)",
+                icon: 'success'
+            });
+        </script>
+    @endif
+    @if (session()->has('beenThere'))
+        <script>
+            Swal.fire({
+                title: "Product Already In Wishlist :)",
+                icon: 'warning'
+            });
+        </script>
+    @endif
     <div class="container mx-auto">
         {{ $products->links() }}
     </div>

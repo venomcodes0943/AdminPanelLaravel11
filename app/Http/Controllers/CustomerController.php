@@ -26,11 +26,39 @@ class CustomerController extends Controller
         $products = Product::simplePaginate(12);
         return view('customer.products', ['products' => $products]);
     }
-
-    public function addToCart(Request $request, $id)
+    public function wishlistAll()
+    {
+        // session()->forget('wishlist');
+        return view('customer.wishlist');
+    }
+    public function wishlist(Request $request, $id)
     {
         $product = Product::find($id);
 
+        if (!$product) {
+            return back()->with('error', true);
+        }
+
+        $wishlist = session()->get('wishlist', []);
+
+        if (array_key_exists($id, $wishlist)) {
+            return back()->with('beenThere', true);
+        } else {
+            $wishlist[$id] = [
+                'id' => $product->id,
+                'title' => $product->title,
+                'category' => $product->category->categoryName,
+                'image' => $product->image,
+                'price' => $product->price,
+                'quantity' => $request->quantity,
+            ];
+        }
+        session()->put('wishlist', $wishlist);
+        return back()->with('addtowish', true);
+    }
+    public function addToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
         if (!$product) {
             return back()->with('error', true);
         }
@@ -64,26 +92,25 @@ class CustomerController extends Controller
         return view('customer.checkout');
     }
 
-    public function clearSingleCart($itemId)
+    public function clearSingleSession($itemId, $sessionName)
     {
-        $cart = session()->get('cart', []);
+        $sessionData = session()->get($sessionName, []);
 
-        if (array_key_exists($itemId, $cart)) {
+        if (array_key_exists($itemId, $sessionData)) {
+            unset($sessionData[$itemId]);
 
-            unset($cart[$itemId]);
-
-            if (empty($cart)) {
-
-                session()->forget('cart');
-                return redirect()->route('customer.index');
+            if (empty($sessionData)) {
+                session()->forget($sessionName);
+                return back();
             } else {
-
-                session()->put('cart', $cart);
-                return redirect()->route('customer.index');
+                session()->put($sessionName, $sessionData);
+                return back();
             }
-
         } else {
-            return redirect()->route('customer.index')->with('error', 'Item not found in cart.');
+            return redirect()->route('customer.index')->with('error', 'Item not found in ' . $sessionName . '.');
         }
     }
+
+
+
 }

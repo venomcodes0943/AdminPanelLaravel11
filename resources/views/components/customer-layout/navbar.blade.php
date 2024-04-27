@@ -181,7 +181,7 @@
                                                     <p class="text-base font-semibold text-black">
                                                         ${{ $item['quantity'] * $item['price'] }}</p>
                                                     <div class="font-semibold text-red-500">
-                                                        <a href="{{ route('cart.single.clear', ['itemId' => $item['id']]) }}"
+                                                        <a href="{{ route('cart.single.clear', ['itemId' => $item['id'], 'sessionName' => 'cart']) }}"
                                                             id="cart-cancel">
                                                             Canel
                                                         </a>
@@ -435,7 +435,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="customers-wishlist.html"
+                                    <a href="{{ route('customer.wishlistAll') }}"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
                                         Wishlist
                                     </a>
