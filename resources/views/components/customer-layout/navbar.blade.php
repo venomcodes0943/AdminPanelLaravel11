@@ -437,7 +437,16 @@
                                 <li>
                                     <a href="{{ route('customer.wishlistAll') }}"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
-                                        Wishlist
+                                        Wishlist &nbsp;
+                                        @if (session()->has('wishlist'))
+                                            <span
+                                                class="bg-blue-500 w-4 h-4 text-center flex justify-center items-center rounded-full text-white"
+                                                style="font-size: 12px">
+                                                {{ count(session('wishlist')) }}
+                                            </span>
+                                        @else
+                                            <span class=""></span>
+                                        @endif
                                     </a>
                                 </li>
                                 <li>
