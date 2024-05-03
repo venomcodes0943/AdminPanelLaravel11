@@ -44,18 +44,11 @@
                                                 class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                 <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
                                                     <div class="flex items-center">
-                                                        {{-- <img src="assets/images/products/02.png" alt=""
-                                                            class="me-2 h-8 inline-block"> --}}
-                                                        @if (strpos($item['image'], 'https://via.placeholder.com') !== false)
-                                                            <img src="{{ $item['image'] }}" alt="product image"
+                                                        <a href="#">
+                                                            <img src="{{ asset('storage/' . $item['image']) }}"
+                                                                alt="product image"
                                                                 class="me-2 h-8 inline-block rounded">
-                                                        @else
-                                                            <a href="#">
-                                                                <img src="{{ asset('storage/' . $item['image']) }}"
-                                                                    alt="product image"
-                                                                    class="me-2 h-8 inline-block rounded">
-                                                            </a>
-                                                        @endif
+                                                        </a>
                                                         <div class="self-center">
                                                             <h5
                                                                 class="text-sm font-semibold text-slate-700 dark:text-gray-400">
@@ -87,7 +80,7 @@
                                                         @csrf
                                                         <input
                                                             class="form-input border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent  rounded-md mt-1 border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-0 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-brand-500  dark:hover:border-slate-700"
-                                                            style="width:50px;" type="number" min="1"
+                                                            style="width:50px;" required type="number"
                                                             id="example-number-input" name="quantity">
                                                         <button type="submit"><i
                                                                 class="icofont-shopping-cart text-2xl text-gray-500 dark:text-gray-400"></i></button>

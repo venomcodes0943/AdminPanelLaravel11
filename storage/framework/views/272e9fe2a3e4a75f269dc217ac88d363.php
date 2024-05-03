@@ -1,11 +1,11 @@
 <?php if (isset($component)) { $__componentOriginal08735d9b99bd539905c5264be490a0d8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal08735d9b99bd539905c5264be490a0d8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.customer-layout.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.customer-layout.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('customer-layout.layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('head', null, []); ?> 
@@ -53,16 +53,11 @@
                                                         class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                         <td
                                                             class="p-3 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-slate-300">
-                                                            <?php if(strpos($item['image'], 'https://via.placeholder.com') !== false): ?>
-                                                                <img src="<?php echo e($item['image']); ?>" alt="product image"
+                                                            <a href="#">
+                                                                <img src="<?php echo e(asset('storage/' . $item['image'])); ?>"
+                                                                    alt="product image"
                                                                     class="mr-2 h-8 inline-block rounded">
-                                                            <?php else: ?>
-                                                                <a href="#">
-                                                                    <img src="<?php echo e(asset('storage/' . $item['image'])); ?>"
-                                                                        alt="product image"
-                                                                        class="mr-2 h-8 inline-block rounded">
-                                                                </a>
-                                                            <?php endif; ?>
+                                                            </a>
                                                             <h5
                                                                 class="text-sm font-semibold text-slate-700 dark:text-gray-400 inline-block">
                                                                 <?php echo e($item['title']); ?></h5>
@@ -102,9 +97,11 @@
                                         <?php
                                             $cart = session()->get('cart');
                                             $totalPrice = 0;
-                                            foreach ($cart as $item) {
-                                                if (isset($item['price']) && isset($item['quantity'])) {
-                                                    $totalPrice += $item['price'] * $item['quantity'];
+                                            if ($cart) {
+                                                foreach ($cart as $item) {
+                                                    if (isset($item['price']) && isset($item['quantity'])) {
+                                                        $totalPrice += $item['price'] * $item['quantity'];
+                                                    }
                                                 }
                                             }
                                         ?>
@@ -138,7 +135,11 @@
                                                 </td>
                                                 <td class="p-3 text-base font-medium text-gray-100 whitespace-nowrap">
                                                     <?php
-                                                        echo '$' . $totalPrice + 5 . '.00';
+                                                        if ($cart) {
+                                                            echo '$' . $totalPrice + 5 . '.00';
+                                                        } else {
+                                                            echo '$' . $totalPrice . '.00';
+                                                        }
                                                     ?>
                                                 </td>
                                             </tr>
@@ -385,9 +386,15 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment <?php
-                                        echo '$' . $totalPrice + 5 . '.00';
-                                    ?></button>
+                                    payment
+                                    <?php
+                                        if ($cart) {
+                                            echo '$' . $totalPrice + 5 . '.00';
+                                        } else {
+                                            echo '$' . $totalPrice . '.00';
+                                        }
+                                    ?>
+                                </button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->
@@ -483,9 +490,15 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment <?php
-                                        echo '$' . $totalPrice + 5 . '.00';
-                                    ?></button>
+                                    payment
+                                    <?php
+                                        if ($cart) {
+                                            echo '$' . $totalPrice + 5 . '.00';
+                                        } else {
+                                            echo '$' . $totalPrice . '.00';
+                                        }
+                                    ?>
+                                </button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->

@@ -477,17 +477,10 @@
                                                             class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                             <td
                                                                 class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                                @if (strpos($data->image, 'https://via.placeholder.com') !== false)
-                                                                    <img src="{{ $data->image }}"
-                                                                        alt="{{ $data->title }}"
-                                                                        class="me-2 h-8 rounded shadow inline-block"
-                                                                        width="40px">
-                                                                @else
-                                                                    <img src="{{ asset('storage/' . $data->image) }}"
-                                                                        alt="{{ $data->title }}"
-                                                                        class="me-2 h-8 rounded shadow inline-block"
-                                                                        width="40px">
-                                                                @endif
+                                                                <img src="{{ asset('storage/' . $data->image) }}"
+                                                                    alt="{{ $data->title }}"
+                                                                    class="me-2 h-8 rounded shadow inline-block"
+                                                                    width="40px">
                                                                 {{ $data->title }}
                                                             </td>
                                                             <td

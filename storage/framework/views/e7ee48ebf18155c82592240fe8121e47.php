@@ -1,11 +1,11 @@
 <?php if (isset($component)) { $__componentOriginal1f9e5f64f242295036c059d9dc1c375c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal1f9e5f64f242295036c059d9dc1c375c = $attributes; } ?>
-<?php $component = App\View\Components\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Layout::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\Layout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('head', null, []); ?> 
@@ -168,17 +168,10 @@
                                                                         <td
                                                                             class="p-3  text-sm font-medium whitespace-nowrap dark:text-white">
                                                                             <div class="flex items-center">
-                                                                                <?php if(strpos($product->image, 'https://via.placeholder.com') !== false): ?>
-                                                                                    <img src="<?php echo e($product->image); ?>"
-                                                                                        alt="<?php echo e($product->title); ?>"
-                                                                                        class="me-2 h-8 rounded shadow"
-                                                                                        width="40px">
-                                                                                <?php else: ?>
-                                                                                    <img src="<?php echo e(asset('storage/' . $product->image)); ?>"
-                                                                                        alt="<?php echo e($product->title); ?>"
-                                                                                        class="me-2 h-8 rounded shadow"
-                                                                                        width="40px">
-                                                                                <?php endif; ?>
+                                                                                <img src="<?php echo e(asset('storage/' . $product->image)); ?>"
+                                                                                    alt="<?php echo e($product->title); ?>"
+                                                                                    class="me-2 h-8 rounded shadow"
+                                                                                    width="40px">
                                                                                 <div class="self-center">
                                                                                     <h5
                                                                                         class="text-sm font-semibold text-slate-700 dark:text-gray-400">

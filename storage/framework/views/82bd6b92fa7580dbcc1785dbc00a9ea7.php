@@ -158,15 +158,10 @@
                                             <div class="mx-1 flex items-center justify-between pb-4">
                                                 <div class="flex items-center px-1">
                                                     <div class="me-3 h-10 w-full max-w-[40px]">
-                                                        <?php if(strpos($item['image'], 'https://via.placeholder.com') !== false): ?>
-                                                            <img src="<?php echo e($item['image']); ?>" alt="product image"
-                                                                class="w-8 h-8 rounded">
-                                                        <?php else: ?>
-                                                            <a href="#">
-                                                                <img src="<?php echo e(asset('storage/' . $item['image'])); ?>"
-                                                                    alt="product image" class="w-8 h-8 rounded">
-                                                            </a>
-                                                        <?php endif; ?>
+                                                        <a href="#">
+                                                            <img src="<?php echo e(asset('storage/' . $item['image'])); ?>"
+                                                                alt="product image" class="w-8 h-8 rounded">
+                                                        </a>
                                                     </div>
                                                     <div>
                                                         <a href="product-details.html"
@@ -460,7 +455,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="customers-checkout.html"
+                                    <a href="<?php echo e(route('cart.checkout')); ?>"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
                                         Checkout
                                     </a>

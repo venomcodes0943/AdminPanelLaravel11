@@ -27,16 +27,10 @@
                         <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                             <div class="sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 text-center">
                                 <div id="img-container" class="w-[400px] text-center inline-block mx-auto">
-                                    @if (strpos($product->image, 'https://via.placeholder.com') !== false)
-                                        <a href="#">
-                                            <img src="{{ $product->image }}" alt="" class="inline-block">
-                                        </a>
-                                    @else
-                                        <a href="#">
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt=""
-                                                class="inline-block">
-                                        </a>
-                                    @endif
+                                    <a href="#">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt=""
+                                            class="inline-block">
+                                    </a>
                                 </div>
                             </div>
                             <div class="sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 self-center">

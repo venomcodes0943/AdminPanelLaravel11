@@ -44,16 +44,11 @@
                                                         class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                         <td
                                                             class="p-3 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-slate-300">
-                                                            @if (strpos($item['image'], 'https://via.placeholder.com') !== false)
-                                                                <img src="{{ $item['image'] }}" alt="product image"
+                                                            <a href="#">
+                                                                <img src="{{ asset('storage/' . $item['image']) }}"
+                                                                    alt="product image"
                                                                     class="mr-2 h-8 inline-block rounded">
-                                                            @else
-                                                                <a href="#">
-                                                                    <img src="{{ asset('storage/' . $item['image']) }}"
-                                                                        alt="product image"
-                                                                        class="mr-2 h-8 inline-block rounded">
-                                                                </a>
-                                                            @endif
+                                                            </a>
                                                             <h5
                                                                 class="text-sm font-semibold text-slate-700 dark:text-gray-400 inline-block">
                                                                 {{ $item['title'] }}</h5>
@@ -91,9 +86,11 @@
                                         @php
                                             $cart = session()->get('cart');
                                             $totalPrice = 0;
-                                            foreach ($cart as $item) {
-                                                if (isset($item['price']) && isset($item['quantity'])) {
-                                                    $totalPrice += $item['price'] * $item['quantity'];
+                                            if ($cart) {
+                                                foreach ($cart as $item) {
+                                                    if (isset($item['price']) && isset($item['quantity'])) {
+                                                        $totalPrice += $item['price'] * $item['quantity'];
+                                                    }
                                                 }
                                             }
                                         @endphp
@@ -127,7 +124,11 @@
                                                 </td>
                                                 <td class="p-3 text-base font-medium text-gray-100 whitespace-nowrap">
                                                     @php
-                                                        echo '$' . $totalPrice + 5 . '.00';
+                                                        if ($cart) {
+                                                            echo '$' . $totalPrice + 5 . '.00';
+                                                        } else {
+                                                            echo '$' . $totalPrice . '.00';
+                                                        }
                                                     @endphp
                                                 </td>
                                             </tr>
@@ -374,9 +375,15 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment @php
-                                        echo '$' . $totalPrice + 5 . '.00';
-                                    @endphp</button>
+                                    payment
+                                    @php
+                                        if ($cart) {
+                                            echo '$' . $totalPrice + 5 . '.00';
+                                        } else {
+                                            echo '$' . $totalPrice . '.00';
+                                        }
+                                    @endphp
+                                </button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->
@@ -472,9 +479,15 @@
                                 </div>
                                 <button
                                     class="px-2 py-2 lg:px-4 bg-brand  text-white text-sm  rounded hover:bg-brand-600 border border-brand-500 w-full">Confirm
-                                    payment @php
-                                        echo '$' . $totalPrice + 5 . '.00';
-                                    @endphp</button>
+                                    payment
+                                    @php
+                                        if ($cart) {
+                                            echo '$' . $totalPrice + 5 . '.00';
+                                        } else {
+                                            echo '$' . $totalPrice . '.00';
+                                        }
+                                    @endphp
+                                </button>
                             </div><!--end card-body-->
                         </div> <!--end card-->
                     </div><!--end col-->

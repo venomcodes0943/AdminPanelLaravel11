@@ -1,11 +1,11 @@
 <?php if (isset($component)) { $__componentOriginal1f9e5f64f242295036c059d9dc1c375c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal1f9e5f64f242295036c059d9dc1c375c = $attributes; } ?>
-<?php $component = App\View\Components\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\Layout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Layout::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\App\View\Components\Layout::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('head', null, []); ?> 
@@ -486,17 +486,10 @@
                                                             class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
                                                             <td
                                                                 class="p-3 text-base font-medium whitespace-nowrap dark:text-white">
-                                                                <?php if(strpos($data->image, 'https://via.placeholder.com') !== false): ?>
-                                                                    <img src="<?php echo e($data->image); ?>"
-                                                                        alt="<?php echo e($data->title); ?>"
-                                                                        class="me-2 h-8 rounded shadow inline-block"
-                                                                        width="40px">
-                                                                <?php else: ?>
-                                                                    <img src="<?php echo e(asset('storage/' . $data->image)); ?>"
-                                                                        alt="<?php echo e($data->title); ?>"
-                                                                        class="me-2 h-8 rounded shadow inline-block"
-                                                                        width="40px">
-                                                                <?php endif; ?>
+                                                                <img src="<?php echo e(asset('storage/' . $data->image)); ?>"
+                                                                    alt="<?php echo e($data->title); ?>"
+                                                                    class="me-2 h-8 rounded shadow inline-block"
+                                                                    width="40px">
                                                                 <?php echo e($data->title); ?>
 
                                                             </td>

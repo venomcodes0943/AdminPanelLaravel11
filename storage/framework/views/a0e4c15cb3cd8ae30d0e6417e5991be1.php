@@ -1,11 +1,11 @@
 <?php if (isset($component)) { $__componentOriginal08735d9b99bd539905c5264be490a0d8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal08735d9b99bd539905c5264be490a0d8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.customer-layout.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.customer-layout.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('customer-layout.layout'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
 
@@ -242,17 +242,10 @@
                                         ?>
                                         %
                                         off</span>
-                                    <?php if(strpos($product->image, 'https://via.placeholder.com') !== false): ?>
-                                        <a href="<?php echo e(route('product.detail', ['id' => $product->id])); ?>">
-                                            <img src="<?php echo e($product->image); ?>" alt=""
-                                                class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
-                                        </a>
-                                    <?php else: ?>
-                                        <a href="<?php echo e(route('product.detail', ['id' => $product->id])); ?>">
-                                            <img src="<?php echo e(asset('storage/' . $product->image)); ?>" alt=""
-                                                class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
-                                        </a>
-                                    <?php endif; ?>
+                                    <a href="<?php echo e(route('product.detail', ['id' => $product->id])); ?>">
+                                        <img src="<?php echo e(asset('storage/' . $product->image)); ?>" alt=""
+                                            class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
+                                    </a>
                                 </div>
                                 <div class="flex-auto  text-center p-4">
                                     <span

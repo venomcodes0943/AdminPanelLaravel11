@@ -233,17 +233,10 @@
                                         @endphp
                                         %
                                         off</span>
-                                    @if (strpos($product->image, 'https://via.placeholder.com') !== false)
-                                        <a href="{{ route('product.detail', ['id' => $product->id]) }}">
-                                            <img src="{{ $product->image }}" alt=""
-                                                class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
-                                        </a>
-                                    @else
-                                        <a href="{{ route('product.detail', ['id' => $product->id]) }}">
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt=""
-                                                class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
-                                        </a>
-                                    @endif
+                                    <a href="{{ route('product.detail', ['id' => $product->id]) }}">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt=""
+                                            class="h-44 inline-block my-4 rounded transition ease-in-out delay-50  hover:-translate-y-1 hover:scale-110 duration-500">
+                                    </a>
                                 </div>
                                 <div class="flex-auto  text-center p-4">
                                     <span
