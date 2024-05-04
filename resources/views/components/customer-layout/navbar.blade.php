@@ -445,12 +445,6 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="customers-stores.html"
-                                        class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
-                                        Stores
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('cart.checkout') }}"
                                         class="flex justify-between py-2 text-base font-medium text-dark hover:text-brand lg:mx-5 lg:inline-flex lg:py-6 2xl:mx-6">
                                         Checkout

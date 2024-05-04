@@ -10,7 +10,7 @@ class CustomerController extends Controller
     //
     public function index()
     {
-        $products = Product::latest()->simplePaginate(15);
+        $products = Product::latest()->simplePaginate(16);
         return view('customer.index', ['products' => $products]);
     }
 
@@ -23,7 +23,7 @@ class CustomerController extends Controller
 
     public function show()
     {
-        $products = Product::simplePaginate(12);
+        $products = Product::simplePaginate(16);
         return view('customer.products', ['products' => $products]);
     }
     public function wishlistAll()
@@ -65,7 +65,7 @@ class CustomerController extends Controller
         $cart = session()->get('cart', []);
 
         if (array_key_exists($id, $cart)) {
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity'] += $request->quantity;
         } else {
             $cart[$id] = [
                 'id' => $product->id,

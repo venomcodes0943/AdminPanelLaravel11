@@ -97,8 +97,8 @@
                                         <?php echo csrf_field(); ?>
                                         <input
                                             class="form-input border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent  rounded-md mt-1 border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-0 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-brand-500  dark:hover:border-slate-700"
-                                            style="width:100px;" type="number" min="1" value="1"
-                                            id="example-number-input" name="quantity">
+                                            style="width:100px;" name="quantity" type="number" min="1"
+                                            id="example-number-input" value="1">
                                         <button type="submit"
                                             class="inline-block focus:outline-none text-slate-600 hover:bg-brand-500 hover:text-white bg-transparent border border-gray-200 dark:bg-transparent dark:text-slate-400 dark:hover:text-white dark:border-gray-700 dark:hover:bg-brand-500  text-sm font-medium py-2 px-3 rounded"><i
                                                 class="ti ti-shopping-cart"></i> Add to cart</button>

@@ -290,9 +290,6 @@
             });
         </script>
     @endif
-    <div class="container mx-auto">
-        {{ $products->links() }}
-    </div>
     <div class="pb-5 pt-0 md:py-5">
         <div class="container">
             <div class=" md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4 hidden md:grid">
